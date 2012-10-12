@@ -22,7 +22,7 @@ module ArModelGenerator
     ActiveRecord::Base.connection
 
     namespace = h.ask "Namespace for models"
-    create_models(namespace)
+    create_models(namespace, connection)
 
     $stdout.puts "DONE. please look inside the Base.rb and delete/replace
     connection information with something like :#{namespace.downcase} from your database.yml"
