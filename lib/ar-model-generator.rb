@@ -1,6 +1,7 @@
 require "highline"
 require "active_record"
 require "active_support/all"
+require "fileutils"
 module ArModelGenerator
   module_function
   def cli
@@ -20,8 +21,9 @@ module ArModelGenerator
 
     ActiveRecord::Base.establish_connection connection
     ActiveRecord::Base.connection
+    $stdout.puts h.color("Connection established", :green)
 
-    namespace = h.ask "Namespace for models"
+    namespace = h.ask "Namespace for models (lowercase singular ok)?"
     create_models(namespace, connection)
 
     $stdout.puts "DONE. please look inside the Base.rb and delete/replace
